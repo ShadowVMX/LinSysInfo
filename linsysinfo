@@ -1,0 +1,233 @@
+#!/bin/bash
+#
+##########################
+#			 #
+# SysInfo para Intrusión #
+#			 #
+##########################
+#
+#
+#Desarrollado por ShadowVMX para tratar de vulnerar aún más el sistema una vez estemos dentro.
+#
+#
+
+#Trap del ctrl_c
+
+
+trap exitSys SIGINT
+
+exitSys(){
+	echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Saliendo, espere..."
+	sleep 1.5
+	exit
+}
+
+
+echo "$(tput setaf 153)"; figlet sysinfo 
+echo " "
+echo "$(tput setaf 112)                 @ShadowVMX v1.0"
+echo " "
+echo "$(tput setaf 8) "
+
+#Información del Kernel
+
+echo " "
+echo "___________________________________________________"
+echo "___________________________________________________"
+echo " "
+
+echo -n "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Script ejecutado por --> $(tput setaf 3)" && whoami && echo "$(tput setaf 8)"
+
+echo "___________________________________________________"
+echo " "
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Kernel Version: "
+echo "$(tput setaf 2) "
+uname -a
+echo " "
+uname -r
+echo " "
+echo "$(tput setaf 8) "
+
+#Información acerca de la CPU
+sleep 1.5
+
+echo "___________________________________________________"
+echo " "
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]CPU Model & CPU Speed: "
+echo "$(tput setaf 2) "
+lscpu | grep "Model name:"
+echo " "
+inxi | grep "CPU:"
+echo " "
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Información acerca de la SHELL Actual
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Variables de entorno: "
+echo "$(tput setaf 2) "
+env 2>/dev/null | grep -v 'LS_COLORS' 2>/dev/null
+echo " "
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Memoria usada por los discos duros
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Memoria usada (HDD|SSD): "
+echo "$(tput setaf 2) "
+inxi | grep "Storage: " | cut -d " " -f1,2,3,4,5
+echo " "
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Información de la memoria RAM
+sleep 1.5
+
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Memoria RAM: "
+echo "$(tput setaf 2) "
+free -h
+echo " "
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Servicios actuales activos
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Servicios actuales levantados: "
+echo "$(tput setaf 2) "
+service --status-all | grep "+"
+echo " "
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Capabilities actuales en el sistema
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Capabilities: "
+echo "$(tput setaf 2) "
+getcap -r / 2> /dev/null 
+echo " "
+echo "--> GTFOBins (https://gtfobins.github.io/)"
+echo " "
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Permisos SUID
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Permisos SUID: "
+echo "$(tput setaf 2)"
+find . / -perm /4000 2> /dev/null
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Permisos GUID
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Permisos GUID: "
+echo "$(tput setaf 2)"
+find . / -perm /2000 2> /dev/null
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Grupos con el ID
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]ID (grupos): "
+echo "$(tput setaf 2)"
+id
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Permisos en ejecución con sudo -l
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Permisos de ejecución del usuario actual: "
+echo "$(tput setaf 2)"
+sudo -l
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Leer el /etc/passwd
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Acceso al /etc/passwd: "
+echo "$(tput setaf 2)"
+cat /etc/passwd
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Leer el /etc/shadow
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Acceso al /etc/shadow: "
+echo "$(tput setaf 2)"
+cat /etc/shadow &> /dev/null 
+
+if [[ $? == 1 ]] ; then
+	echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]No podemos leer /etc/shadow"
+else
+	cat /etc/shadow
+fi
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Leer el directorio de root
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Acceso al directorio de root: "
+echo "$(tput setaf 2)"
+lsd -la /root/ 2> /dev/null
+
+if [[ $? == 1 ]] ; then
+	echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]No tenemos permiso para acceder."
+else
+	lsd -la /root/ 
+fi
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Visualizar las conexiones TCP
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Listando las conexiones TCP: "
+echo "$(tput setaf 2)"
+ss -t
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Visualizar las conexiones UDP
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Listando las conexiones UDP: "
+echo "$(tput setaf 2)"
+ss -ua
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Visualizar los procesos actuales en el sistema
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Listando los procesos actuales en el sistema: "
+echo "$(tput setaf 2)"
+ps aux
+echo " "
+echo " "
