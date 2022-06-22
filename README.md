@@ -8,3 +8,30 @@ Script en bash que tiene como objetivo verificar las distintas características 
 
 ## Instalación:
 
+git clone https://github.com/ShadowVMX/LinSysInfo.git
+
+cd LinSysInfo
+
+chmod +x linsysinfo
+
+## Ejecución:
+
+Simplemente debemos de ejecutarlo en el sistema estemos donde estemos.
+
+**CONSEJO**
+
+ - Guárdalo en la carpeta /tmp para evitar dejar rastro.
+
+## Reporte de las capturas:
+
+![ParrotPentesting-2022-06-23-00-39-19](https://user-images.githubusercontent.com/92258683/175166460-9a8f94c7-a0e4-4b01-adf9-9ad02e25a9a3.png)
+
+
+
+![ParrotPentesting-2022-06-23-00-40-16](https://user-images.githubusercontent.com/92258683/175166471-2e6685ff-b48a-4c56-96f8-5883671543cd.png)
+
+
+
+![ParrotPentesting-2022-06-23-00-40-28](https://user-images.githubusercontent.com/92258683/175166476-a6119e2a-54de-40b2-9d55-db38eebd8fb8.png)
+
+
