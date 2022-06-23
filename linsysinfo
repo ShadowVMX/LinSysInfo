@@ -25,7 +25,7 @@ exitSys(){
 
 echo "$(tput setaf 153)"; figlet sysinfo 
 echo " "
-echo "$(tput setaf 112)                 @ShadowVMX v1.0"
+echo "$(tput setaf 112)                 @ShadowVMX v1.4"
 echo " "
 echo "$(tput setaf 8) "
 
@@ -73,6 +73,20 @@ echo " "
 echo "$(tput setaf 8) "
 echo "___________________________________________________"
 echo " "
+
+#Información sobre variables y carpetas de ejecución
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Variables de entorno complementarias: "
+echo "$(tput setaf 2) "
+echo $PATH
+echo " "
+ls -ld 2> /dev/null $(echo $PATH | tr ":" " ")
+echo " "
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
 
 #Memoria usada por los discos duros
 sleep 1.5
@@ -229,5 +243,196 @@ sleep 1.5
 echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Listando los procesos actuales en el sistema: "
 echo "$(tput setaf 2)"
 ps aux
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
 echo " "
+
+#Visualizar la característica ARP
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]ARP: "
+echo "$(tput setaf 2)"
+arp
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Información de Networking
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Direcciones IP en el sistema: "
+echo "$(tput setaf 2)"
+ifconfig
+echo " "
+echo " "
+ip a 
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+
+#Usuarios conectados actualmente
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Usuarios conectados actualmente al sistema: "
+echo "$(tput setaf 2)"
+w
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Se permite el login de root por SSH
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Conexión vía SSH: "
+echo "$(tput setaf 2)"
+
+cat /etc/ssh/sshd_config | grep "PermitRootLogin yes" &> /dev/null
+
+if [[ $? == 0 ]] ; then
+	echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Conexión posible --> [PermitRootLogin Yes]"
+else
+	echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Conexión no posible --> [PermitRootLogin No]"
+fi
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Shells disponibles en el sistema
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Shells disponibles: "
+echo "$(tput setaf 2)"
+cat /etc/shells
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Información acerca de las contraseñas del sistema
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Información acerca de las contraseñas: "
+echo "$(tput setaf 2)"
+cat /etc/login.defs | grep "^PASS_MAX_DAYS\|^PASS_MIN_DAYS\|^PASS_WARN_AGE\|^ENCRYPT_METHOD"
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+
+#Información acerca de las tareas cron
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Información acerca de las tareas cron: "
+echo "$(tput setaf 2)"
+lsd -ll /etc/cron.d/
+echo " "
+echo " "
+cat /etc/crontab 
+echo " "
+echo " "
+lsd -ll /etc/cron.daily/
+echo " "
+echo " "
+lsd -al /var/spool/cron/crontabs/
+echo " "
+echo " "
+lsd -al /etc/cron.hourly/
+echo " "
+echo " "
+lsd -al /etc/cron.monthly/
+echo " "
+echo " "
+lsd -al /etc/cron.weekly/
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Versión de los distintos componentes (sudo)
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Versión del sudo: "
+echo "$(tput setaf 2)"
+sudo -V | grep "version"
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Versión de apache2
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Versión de apache2: "
+echo "$(tput setaf 2)"
+apache2 -v
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#MySQL version
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Versión de MySQL: "
+echo "$(tput setaf 2)"
+
+ls -l /usr/bin/mysql &> /dev/null
+
+if [[ $? == 0 ]] ; then
+	mysql --version
+else
+	echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]MySQL no está instalado en el sistema"
+fi
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Softwares interesantes
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Softwares críticos e importantes: "
+echo "$(tput setaf 2)"
+which nc 2> /dev/null
+which netcat 2> /dev/null
+which nmap 2> /dev/null
+which gcc 2> /dev/null
+which curl 2> /dev/null
+which python 2> /dev/null
+which python2.7 2> /dev/null
+which python3 2> /dev/null
+which wget 2> /dev/null
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Posibilidad de leer historial
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Historial del usuario: "
+echo "$(tput setaf 2)"
+ls -la ~/.*_history 2>/dev/null
+echo " "
+echo " "
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Historial de root: "
+echo "$(tput setaf 2)"
+
+ls -la /root/.*_history &>/dev/null
+
+if [[ $? == 0 ]] ; then
+	ls -la /root/.*_history
+else
+	echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Inaccesible."
+fi
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+
+#Archivos de Dockers
+sleep 1.5
+
+echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Archivos de Dockers: "
+echo "$(tput setaf 2)"
+find / . -iname "docker*" 2> /dev/null
+echo "$(tput setaf 8) "
+echo "___________________________________________________"
+echo " "
+echo " "
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]$(tput setaf 6)Completado"
 echo " "
