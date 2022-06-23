@@ -1,4 +1,4 @@
-# LinSysInfo v1.0
+# LinSysInfo v1.4
 
 ![privilege](https://user-images.githubusercontent.com/92258683/175166216-dcd34d54-3daa-4fc6-9553-241cba414157.png)
 
