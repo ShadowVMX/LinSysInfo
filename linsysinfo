@@ -25,7 +25,7 @@ exitSys(){
 
 echo "$(tput setaf 153)"; figlet sysinfo 
 echo " "
-echo "$(tput setaf 112)                 @ShadowVMX v1.4"
+echo "$(tput setaf 112)                 @ShadowVMX v1.6"
 echo " "
 echo "$(tput setaf 8) "
 
