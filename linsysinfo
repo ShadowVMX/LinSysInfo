@@ -25,7 +25,7 @@ exitSys(){
 
 echo "$(tput setaf 153)"; figlet sysinfo 
 echo " "
-echo "$(tput setaf 112)                 @ShadowVMX v1.6"
+echo "$(tput setaf 112)                 @ShadowVMX v1.4"
 echo " "
 echo "$(tput setaf 8) "
 
@@ -142,31 +142,119 @@ sleep 1.5
 
 echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Servicios vulnerables posibles: "
 echo "$(tput setaf 2) "
-cat /etc/syslog.conf 2> /dev/null
+
+cat /etc/syslog.conf &> /dev/null
+
+if [[ $? == 0 ]] ; then
+	echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]syslog.conf"
+	echo "$(tput setaf 2)"
+	cat /etc/syslog.conf
+else
+	:
+fi
 echo " "
 echo " "
-cat /etc/chttp.conf 2> /dev/null
+cat /etc/chttp.conf &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]chttp.conf"
+        echo "$(tput setaf 2)"
+	cat /etc/chttp.conf
+else
+        :
+fi
+
 echo " "
 echo " "
-cat /etc/lighttpd.conf 2> /dev/null
+cat /etc/lighttpd.conf &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]lighttpd.conf"
+        echo "$(tput setaf 2)"
+	cat /etc/lighttpd.conf
+else
+        :
+fi
+
+
 echo " "
 echo " "
-cat /etc/cups/cupsd.conf 2> /dev/null
+cat /etc/cups/cupsd.conf &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]cupsd.conf"
+	echo "$(tput setaf 2)"
+        cat /etc/cups/cupsd.conf
+else
+        :
+fi
+
+
 echo " "
 echo " "
-cat /etc/inetd.conf 2> /dev/null
+cat /etc/inetd.conf &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]inetd.conf"
+	echo "$(tput setaf 2)"
+        cat /etc/inetd.conf
+else
+        :
+fi
+
+
 echo " "
 echo " "
-cat /etc/apache2/apache2.conf 2> /dev/null
+cat /etc/apache2/apache2.conf &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]apache2.conf"
+	echo "$(tput setaf 2)"
+        cat /etc/apache2/apache2.conf
+else
+        :
+fi
+
+
 echo " "
 echo " "
-cat /etc/my.conf 2> /dev/null
+cat /etc/my.conf &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]myconf.conf"
+	echo "$(tput setaf 2)"
+	cat /etc/my.conf
+else
+        :
+fi
+
+
 echo " "
 echo " "
-cat /etc/httpd/conf/httpd.conf 2> /dev/null
+cat /etc/httpd/conf/httpd.conf &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]httpd.conf"
+        echo "$(tput setaf 2)"
+	cat /etc/httpd/conf/httpd.conf
+else
+        :
+fi
+
+
 echo " "
 echo " "
-cat /opt/lampp/etc/httpd.conf 2> /dev/null
+cat /opt/lampp/etc/httpd.conf &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]lampp/httpd.conf"
+	echo "$(tput setaf 2)"
+        cat /opt/lampp/etc/httpd.conf
+else
+        :
+fi
+
+
 echo " "
 echo "$(tput setaf 8) "
 echo "___________________________________________________"
@@ -322,21 +410,33 @@ echo " "
 ip a 
 echo " "
 echo " "
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]resolv.conf"
+echo "$(tput setaf 2)"
 cat /etc/resolv.conf 2> /dev/null
 echo " "
 echo " "
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Sysconfig/Network"
+echo "$(tput setaf 2)"
 cat /etc/sysconfig/network 2> /dev/null
 echo " "
 echo " "
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Networks"
+echo "$(tput setaf 2)"
 cat /etc/networks 2> /dev/null
 echo " "
 echo " "
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Iptables"
+echo "$(tput setaf 2)"
 iptables -L
 echo " "
 echo " "
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Hostname"
+echo "$(tput setaf 2)"
 hostname
 echo " "
 echo " "
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]DNSDomainName"
+echo "$(tput setaf 2)"
 dnsdomainname
 
 echo "$(tput setaf 8) "
@@ -585,3 +685,4 @@ echo " "
 echo " "
 echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]$(tput setaf 6)Completado"
 echo " "
+
