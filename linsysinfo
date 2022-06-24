@@ -25,7 +25,7 @@ exitSys(){
 
 echo "$(tput setaf 153)"; figlet sysinfo 
 echo " "
-echo "$(tput setaf 112)                 @ShadowVMX v1.4"
+echo "$(tput setaf 112)                 @ShadowVMX v2.0"
 echo " "
 echo "$(tput setaf 8) "
 
@@ -384,6 +384,9 @@ echo "$(tput setaf 2)"
 ps aux
 echo " "
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Listando los procesos exclusivos que se llevan a cabo por root: "
+echo "$(tput setaf 2)"
 ps aux | grep root
 echo "$(tput setaf 8) "
 echo "___________________________________________________"
@@ -460,35 +463,154 @@ sleep 1.5
 echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Claves públicas y privadas del SSH: "
 echo "$(tput setaf 2)"
 
-cat ~/.ssh/authorized_keys 2> /dev/null
+cat ~/.ssh/authorized_keys &> /dev/null
+
+if [[ $? == 0 ]] ; then	
+	echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh authorized_keys: $(tput setaf 2)" 
+	cat ~/.ssh/authorized_keys
+else
+	:
+fi
+
+echo ""
+cat ~/.ssh/identity.pub &> /dev/null
+
+if [[ $? == 0 ]] ; then
+	echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh identity.pub: $(tput setaf 2)" 
+	cat ~/.ssh/identity.pub
+else
+	:
+fi
+
 echo " "
-cat ~/.ssh/identity.pub 2> /dev/null
+cat ~/.ssh/identity &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh identity: $(tput setaf 2)" 
+        cat ~/.ssh/identity.
+else
+        :
+fi
+
 echo " "
-cat ~/.ssh/identity 2> /dev/null
+cat ~/.ssh/id_rsa.pub &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh id_rsa.pubg: $(tput setaf 2)" 
+        cat ~/.ssh/id_rsa.pub
+else
+        :
+fi
+
 echo " "
-cat ~/.ssh/id_rsa.pub 2> /dev/null
+cat ~/.ssh/id_rsa &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh id_rsa: $(tput setaf 2)" 
+        cat ~/.ssh/id_rsa
+else
+        :
+fi
+
 echo " "
-cat ~/.ssh/id_rsa 2> /dev/null
+cat ~/.ssh/id_dsa.pub &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh id_dsa.pub: $(tput setaf 2)" 
+        cat ~/.ssh/id_dsa.pub
+else
+        :
+fi
+
 echo " "
-cat ~/.ssh/id_dsa.pub 2> /dev/null
+cat ~/.ssh/id_dsa &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh id_dsa: $(tput setaf 2)" 
+        cat ~/.ssh/id_dsa
+else
+        :
+fi
+
 echo " "
-cat ~/.ssh/id_dsa 2> /dev/null
+cat /etc/ssh/ssh_config &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh_config: $(tput setaf 2)" 
+        cat /etc/ssh/ssh_config
+else
+        :
+fi
+
 echo " "
-cat /etc/ssh/ssh_config 2> /dev/null
+cat /etc/ssh/sshd_config &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]sshd_config: $(tput setaf 2)" 
+        cat /etc/ssh/sshd_config
+else
+        :
+fi
+
 echo " "
-cat /etc/ssh/sshd_config 2> /dev/null
+cat /etc/ssh/ssh_host_dsa_key.pub &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh_host_dsa_key.pubg: $(tput setaf 2)" 
+        cat /etc/ssh/ssh_host_dsa_key.pub
+else
+        :
+fi
+
 echo " "
-cat /etc/ssh/ssh_host_dsa_key.pub 2> /dev/null
+cat /etc/ssh/ssh_host_dsa_key &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh_host_dsa_key: $(tput setaf 2)" 
+        cat /etc/ssh/ssh_host_dsa_key
+else
+        :
+fi
+
 echo " "
-cat /etc/ssh/ssh_host_dsa_key 2> /dev/null
+cat /etc/ssh/ssh_host_rsa_key.pub &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh_host_rsa_key.pub: $(tput setaf 2)" 
+        cat /etc/ssh/ssh_host_rsa_key.pub
+else
+        :
+fi
+
 echo " "
-cat /etc/ssh/ssh_host_rsa_key.pub 2> /dev/null
+cat /etc/ssh/ssh_host_rsa_key &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh_host_rsa_key: $(tput setaf 2)" 
+        cat /etc/ssh/ssh_host_rsa_key
+else
+        :
+fi
+
 echo " "
-cat /etc/ssh/ssh_host_rsa_key 2> /dev/null
+cat /etc/ssh/ssh_host_key.pub &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh_host_key_pub: $(tput setaf 2)" 
+        cat /etc/ssh/ssh_host_key.pub
+else
+        :
+fi
+
 echo " "
-cat /etc/ssh/ssh_host_key.pub 2> /dev/null
-echo " "
-cat /etc/ssh/ssh_host_key 2> /dev/null
+cat /etc/ssh/ssh_host_key &> /dev/null
+
+if [[ $? == 0 ]] ; then
+        echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]ssh_host_key: $(tput setaf 2)" 
+        cat /etc/ssh/ssh_host_key
+else
+        :
+fi
 
 echo "$(tput setaf 8) "
 echo "___________________________________________________"
@@ -537,24 +659,53 @@ sleep 1.5
 
 echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Información acerca de las tareas cron: "
 echo "$(tput setaf 2)"
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]cron.d: "
+echo "$(tput setaf 2)"
+
 lsd -ll /etc/cron.d/
 echo " "
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]crontab: "
+echo "$(tput setaf 2)"
+
+
 cat /etc/crontab 
 echo " "
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]cron.daily: "
+echo "$(tput setaf 2)"
+
 lsd -ll /etc/cron.daily/
 echo " "
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]crontabs/spools: "
+echo "$(tput setaf 2)"
+
 lsd -al /var/spool/cron/crontabs/
 echo " "
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]cron.hourly: "
+echo "$(tput setaf 2)"
+
 lsd -al /etc/cron.hourly/
 echo " "
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]cron.monthly: "
+echo "$(tput setaf 2)"
+
 lsd -al /etc/cron.monthly/
 echo " "
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]cron.weekly: "
+echo "$(tput setaf 2)"
+
 lsd -al /etc/cron.weekly/
 echo "$(tput setaf 8) "
 echo "___________________________________________________"
@@ -621,12 +772,27 @@ sleep 1.5
 echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Información del usuario: "
 echo "$(tput setaf 2)"
 
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Visualizando bashrc de usuario actual: "
+echo "$(tput setaf 2)"
+
 cat ~/.bashrc 2> /dev/null
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Visualizando .profile de usuario actual: "
+echo "$(tput setaf 2)"
+
 cat ~/.profile 2> /dev/null
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Visualizando /var/mail/root: "
+echo "$(tput setaf 2)"
+
 cat /var/mail/root 2> /dev/null
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Visualizando /var/spool/mail/root: "
+echo "$(tput setaf 2)"
+
 cat /var/spool/mail/root 2> /dev/null
 echo " "
 echo "$(tput setaf 8) "
@@ -640,20 +806,48 @@ sleep 1.5
 
 echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Historial del usuario: "
 echo "$(tput setaf 2)"
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Historiales disponibles del usuario actual: "
+echo "$(tput setaf 2)"
+
 ls -la ~/.*_history 2>/dev/null
 echo " "
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Listando de forma recursiva el /home/: "
+echo "$(tput setaf 2)"
+
 ls -ahlR /home/
 echo " "
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Visualizando .bash_history de usuario actual: "
+echo "$(tput setaf 2)"
+
 cat ~/.bash_history 2> /dev/null
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Visualizando -nano_history de usuario actual: "
+echo "$(tput setaf 2)"
+
 cat ~/.nano_history 2> /dev/null
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Visualizando .aftp_history de usuario actual: "
+echo "$(tput setaf 2)"
+
 cat ~/.atftp_history 2> /dev/null
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Visualizando .mysql_history de usuario actual: "
+echo "$(tput setaf 2)"
+
 cat ~/.mysql_history 2> /dev/null
 echo " "
+
+echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]Visualizando .php_history de usuario actual: "
+echo "$(tput setaf 2)"
+
 cat ~/.php_history 2> /dev/null
 echo " "
 echo "$(tput setaf 6)[$(tput setaf 1)*$(tput setaf 6)]Historial de root: "
@@ -686,3 +880,4 @@ echo " "
 echo "$(tput setaf 3)[$(tput setaf 1)*$(tput setaf 3)]$(tput setaf 6)Completado"
 echo " "
 
+#---Fin del Script---#
