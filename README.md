@@ -25,69 +25,54 @@ Simplemente debemos de ejecutarlo en el sistema estemos donde estemos.
 
 ## ¿Qué lleva a cabo?
 
--Versión del kernel.
+-	Versión de Kernel e información complementaria del mismo.
+-	Verificar dmesg y boot del sistema.
+-	CPU y Mhz de la misma.
+-	Variables de entorno.
+-	Información complementaria de las variables y rutas de ejecución.
+-	RAM disponible y ocupada por el sistema.
+-	Servicios activos en el sistema.
+-	Syslog.conf
+-	Chttpd.conf
+-	Lighttp.conf
+-	Cupsd.conf
+-	Inetd.conf
+-	Apache2.conf
+-	My.conf
+-	Httpd.conf
+-	Capabilities
+-	Permisos SUID
+-	Permisos GUID
+-	Id (groups).
+-	Permisos de ejecución con “sudo –l”
+-	Visualización /etc/passwd
+-	Visualización /etc/shadow
+-	Visualizar directorio de root.
+-	Conexiones TCP.
+-	Conexiones UDP.
+-	Procesos totales del sistema.
+-	Procesos parciales SOLO de root.
+-	ARP
+-	Interfaces
+-	IPtables
+-	DNS
+-	Hostnames
+-	Disponibilidad de SSH con PermitRootLogin –> Yes
+-	SSH authorized keys.
+-	SSH public Keys.
+-	SSH private Keys.
+-	Shells disponibles en el sistema.
+-	Información acerca de las contraseñas del sistema.
+-	Todos los crons disponibles en el sistema podrán ser visualizados.
+-	Versión de sudo.
+-	Versión de apache2.
+-	Versión de MySQL.
+-	Softwares críticos (nc,nmap,gcc,curl,wget… etc)
+-	Ver toda la información del usuario tanto normal como oculta.
+-	Visualización de TODOS los historiales tanto en usuario como en root.
+-	Rutas alternas como /var/spool/mail/root y normal user.
+-	Archivos referentes a todos los Dockers del sistema por si fuera posible verificar Passwords.
 
--CPU Modelo y MHZ.
-
--Variables de entorno.
-
--Variables de entorno complementarias.
-
--Memoria física usada.
-
--Memoria RAM.
-
--Servicios actuales cargados.
-
--Capabilities.
-
--Permisos SUID.
-
--Permisos GUID.
-
--ID (grupos).
-
--Permisos de ejecución del usuario actual.
-
--Acceso al /etc/passwd.
-
--Acceso al /etc/shadow (si es posible).
-
--Acceso al directorio de root.
-
--Listado de conexiones TCP.
-
--Listado de conexiones UDP.
-
--Listado de los procesos actuales del sistema.
-
--Información ARP.
-
--Información Networking (interfaces).
-
--Usuarios conectados al sistema actualmente.
-
--Posibilidad de conexión vía SSH.
-
--Shells disponibles.
-
--Información acerca de las contraseñas del sistema.
-
--Información de TODAS las tareas cron en el Sistema.
-
--Versión del SUDO.
-
--Versión de Apache2.
-
--Versión de MySQL (Si lo hubiera).
-
--Presencia de software crítico.
-
--Acceso a historial de usuario.
-
--Acceso a historial de root.
-
--Archivos de Dockers en el sistema.
 
 
 ## Reporte de las capturas:
